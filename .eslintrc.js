@@ -18,5 +18,6 @@ module.exports = {
     'quotes': ['error', 'single'],
     'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }],
     'eol-last': ['error', 'always'],
+    'no-unused-vars': ['warn'],
   },
 };
