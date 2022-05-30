@@ -13,7 +13,6 @@ const todoFormElement = document.querySelector('.todos__form');
 const todoInputElement = todoFormElement.querySelector('.todos__input');
 const todoTemplateElement = document.querySelector('.todo-template');
 const todoSubmitButtonElement = document.querySelector('.todos__submit-btn');
-
 const getTodoByEvent = e => e.currentTarget.closest('.todo');
 const getTodoTextElement = todo => todo.querySelector('.todo__text');
 
@@ -34,9 +33,19 @@ const editTodo = e => {
   todoSubmitButtonElement.textContent = 'Сохранить';
 };
 
+const duplicateTodo = e => {
+  const todo = getTodoByEvent(e);
+  const duplicatedTodo = todo.cloneNode(true);
+
+  addTodoListeners(duplicatedTodo);
+  
+  todo.after(duplicatedTodo);
+};
+
 const addTodoListeners = todo => {
   todo.querySelector('.todo__btn_type_delete').addEventListener('click', deleteTodo);
   todo.querySelector('.todo__btn_type_edit').addEventListener('click', editTodo);
+  todo.querySelector('.todo__btn_type_duplicate').addEventListener('click', duplicateTodo);
 };
 
 const createTodo = text => {
