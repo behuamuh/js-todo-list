@@ -12,6 +12,7 @@ const todoListElement = document.querySelector('.todos__list');
 const todoFormElement = document.querySelector('.todos__form');
 const todoInputElement = todoFormElement.querySelector('.todos__input');
 const todoTemplateElement = document.querySelector('.todo-template');
+const getTodoByEvent = e => e.currentTarget.closest('.todo');
 
 const createTodo = text => {
   const todo = todoTemplateElement.content
@@ -19,6 +20,12 @@ const createTodo = text => {
     .cloneNode(true);
 
   todo.querySelector('.todo__text').textContent = text;
+
+  todo.querySelector('.todo__btn_type_delete').addEventListener('click', e => {
+    const todo = getTodoByEvent(e);
+
+    todo.remove();
+  });
 
   return todo;
 };
